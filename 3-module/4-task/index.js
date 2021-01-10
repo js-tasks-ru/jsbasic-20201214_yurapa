@@ -1,12 +1,12 @@
 /**
  * showSalary
  * @param {Array} users - данные о пользователях
- * @param {number} age - максимальный возраст
+ * @param {number} maxAge - максимальный возраст
  * @returns {string}
  */
-function showSalary(users, age) {
+function showSalary(users, maxAge) {
 
-  return users.filter(user => user.age <= age)
-              .map(user => `${user.name}, ${user.balance}`)
+  return users.filter(({age}) => age <= maxAge)
+              .map(({name, balance}) => `${name}, ${balance}`)
               .join('\n');
 }
