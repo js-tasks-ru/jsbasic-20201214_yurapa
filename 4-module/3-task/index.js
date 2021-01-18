@@ -7,19 +7,7 @@ function highlight(table) {
   let indexGender;
   let indexStatus;
 
-  const assignIndex = () => {
-    [...table.rows[0].cells].forEach((_heading, i) => {
-      if (_heading.textContent === 'Age') {
-        indexAge = i;
-      } else if (_heading.textContent === 'Gender') {
-        indexGender = i;
-      } else if (_heading.textContent === 'Status') {
-        indexStatus = i;
-      }
-    });
-  };
-
-  assignIndex();
+  [indexAge, indexGender, indexStatus] = findColumnIndexes(table, indexAge, indexGender, indexStatus);
 
   [...table.rows].forEach((row, i) => {
 
@@ -53,4 +41,18 @@ function highlight(table) {
       row.style.textDecoration = 'line-through';
     }
   });
+}
+
+function findColumnIndexes(table, indexAge, indexGender, indexStatus) {
+  [...table.rows[0].cells].forEach((heading, i) => {
+    if (heading.textContent === 'Age') {
+      indexAge = i;
+    } else if (heading.textContent === 'Gender') {
+      indexGender = i;
+    } else if (heading.textContent === 'Status') {
+      indexStatus = i;
+    }
+  });
+
+  return [indexAge, indexGender, indexStatus];
 }
